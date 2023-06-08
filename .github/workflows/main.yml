@@ -1,4 +1,5 @@
-name: static website hosting to s3 bucket
+name: Static Website Hosting to S3 Bucket
+
 on: [push]
 
 jobs:
@@ -6,13 +7,15 @@ deploy-to-s3:
 runs-on: ubuntu-latest
 steps:
 
--name: checkout repository code
+name: checkout repository code
 uses: actions/checkout@v3
--name: AWS credential
+
+name: AWS credential
 uses: aws-actions/configure-aws-credentials@v2
 with:
 aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
 aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 aws-region: us-east-1
+
 name: push to aws s3 bucket
 runs: aws s3 sync . s3://aws-s3-bucket-zain
